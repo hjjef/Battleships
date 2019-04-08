@@ -139,8 +139,8 @@ public class AIHardPlayer : AIPlayer
             }
 
         }
-        while ((row < 0 || column < 0 || row >= EnemyGrid.Height || column >= EnemyGrid.Width
-                    || EnemyGrid.Item[row, column] != TileView.Sea));
+        while (row < 0 || column < 0 || row >= EnemyGrid.Height || column >= EnemyGrid.Width
+                    || EnemyGrid.Item[row, column] != TileView.Sea);
 
     }
 
