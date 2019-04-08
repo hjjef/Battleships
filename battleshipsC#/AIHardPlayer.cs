@@ -58,12 +58,12 @@ public class AIHardPlayer : AIPlayer
         // '' </summary>
         public bool SameRow
         {
-            
+
             get
             {
                 return _ShotAt.Row == _Source.Row;
             }
-            
+
         }
 
         public bool SameColumn
@@ -107,7 +107,7 @@ public class AIHardPlayer : AIPlayer
 
     private Target _CurrentTarget;
 
-    public AIHardPlayer(BattleShipsGame game) :base(game)
+    public AIHardPlayer(BattleShipsGame game) : base(game)
     {
     }
 
@@ -119,15 +119,11 @@ public class AIHardPlayer : AIPlayer
     // '' <param name="column">the column that will be shot at</param>
     protected override void GenerateCoords(ref int row, ref int column)
     {
-        for (
-        ; ((row < 0)
-                    || ((column < 0)
-                    || ((row >= EnemyGrid.Height)
-                    || ((column >= EnemyGrid.Width)
-                    || (EnemyGrid.Item[row, column] != TileView.Sea)))));
-        )
+        do
         {
             _CurrentTarget = null;
+
+            // check state to decide which method to use for coordinate generation
             switch (_CurrentState)
             {
                 case AIStates.Searching:
@@ -141,7 +137,10 @@ public class AIHardPlayer : AIPlayer
                     throw new ApplicationException("AI has gone in an invalid state");
                     break;
             }
+
         }
+        while ((row < 0 || column < 0 || row >= EnemyGrid.Height || column >= EnemyGrid.Width
+                    || EnemyGrid.Item[row, column] != TileView.Sea));
 
     }
 
@@ -167,7 +166,7 @@ public class AIHardPlayer : AIPlayer
     // '' <param name="column">the generated column</param>
     private void SearchCoords(ref int row, ref int column)
     {
-        row =  Random.Next(0, EnemyGrid.Height);
+        row = Random.Next(0, EnemyGrid.Height);
         column = Random.Next(0, EnemyGrid.Width);
         _CurrentTarget = new Target(new Location(row, column), null);
     }
@@ -184,13 +183,13 @@ public class AIHardPlayer : AIPlayer
         switch (result.Value)
         {
             case ResultOfAttack.Miss:
-                 _CurrentTarget = null;
+                _CurrentTarget = null;
                 break;
             case ResultOfAttack.Hit:
-                 ProcessHit(row, col);
+                ProcessHit(row, col);
                 break;
             case ResultOfAttack.Destroyed:
-                this.ProcessDestroy(row, col, result.Ship);
+                ProcessDestroy(row, col, result.Ship);
                 break;
             case ResultOfAttack.ShotAlready:
                 throw new ApplicationException("Error in AI");
@@ -268,19 +267,20 @@ public class AIHardPlayer : AIPlayer
     // '' <param name="toRemove"></param>
     private void RemoveShotsAround(Location toRemove)
     {
-        Stack<Target> newStack = new Stack<Target>();
         // create a new stack
+        Stack<Target> newStack = new Stack<Target>();
+
         // check all targets in the _Targets stack
         foreach (Target t in _Targets)
         {
             // if the source of the target does not belong to the destroyed ship put them on the newStack
-            if (t.Source)
+            if (t.Source != toRemove)
             {
-                IsNot;
-                toRemove;
                 newStack.Push(t);
-                _Targets.Clear();
+
                 // clear the _Targets stack
+                _Targets.Clear();
+
                 // for all the targets in the newStack, move them back onto the _Targets stack
                 foreach (Target myTarget in newStack)
                 {
@@ -292,107 +292,115 @@ public class AIHardPlayer : AIPlayer
                 {
                     _CurrentState = AIStates.Searching;
                 }
-
-                // '' <summary>
-                // '' ProcessHit gets the last hit location coordinates and will ask AddTarget to
-                // '' create targets around that location by calling the method four times each time with
-                // '' a new location around the last hit location.
-                // '' It will then set the state of the AI and if it's not Searching or targetingShip then 
-                // '' start ReOrderTargets.
-                // '' </summary>
-                // '' <param name="row"></param>
-                // '' <param name="col"></param>
-                ProcessHit(((int)(row)), ((int)(col)));
-                _LastHit.Add(_CurrentTarget);
-                // Uses _CurrentTarget as the source
-                AddTarget((row - 1), col);
-                AddTarget(row, (col - 1));
-                AddTarget((row + 1), col);
-                AddTarget(row, (col + 1));
-                if ((_CurrentState == AIStates.Searching))
-                {
-                    _CurrentState = AIStates.TargetingShip;
-                }
-                else
-                {
-                    // either targetting or hitting... both are the same here
-                    _CurrentState = AIStates.HittingShip;
-                    ReOrderTargets();
-                }
-
             }
+        }
+    }
 
-            // '' <summary>
-            // '' ReOrderTargets will optimise the targeting by re-orderin the stack that the targets are in.
-            // '' By putting the most important targets at the top they are the ones that will be shot at first.
-            // '' </summary>
+    // '' <summary>
+    // '' ProcessHit gets the last hit location coordinates and will ask AddTarget to
+    // '' create targets around that location by calling the method four times each time with
+    // '' a new location around the last hit location.
+    // '' It will then set the state of the AI and if it's not Searching or targetingShip then 
+    // '' start ReOrderTargets.
+    // '' </summary>
+    // '' <param name="row"></param>
+    // '' <param name="col"></param>
+    private void ProcessHit(int row, int col)
+    {
+        _LastHit.Add(_CurrentTarget);
+
+        // Uses _CurrentTarget as the source
+        AddTarget((row - 1), col);
+        AddTarget(row, (col - 1));
+        AddTarget((row + 1), col);
+        AddTarget(row, (col + 1));
+        if (_CurrentState == AIStates.Searching)
+        {
+            _CurrentState = AIStates.TargetingShip;
+        }
+        else
+        {
+            // either targetting or hitting... both are the same here
+            _CurrentState = AIStates.HittingShip;
             ReOrderTargets();
-            // if the ship is lying on the same row, call MoveToTopOfStack to optimise on the row
-            if (_CurrentTarget.SameRow)
-            {
-                MoveToTopOfStack(_CurrentTarget.ShotAt.Row, -1);
-            }
-            else if (_CurrentTarget.SameColumn)
-            {
-                // else if the ship is lying on the same column, call MoveToTopOfStack to optimise on the column
-                MoveToTopOfStack(-1, _CurrentTarget.ShotAt.Column);
-            }
+        }
 
-            // '' <summary>
-            // '' MoveToTopOfStack will re-order the stack by checkin the coordinates of each target
-            // '' If they have the right column or row values it will be moved to the _Match stack else 
-            // '' put it on the _NoMatch stack. Then move all the targets from the _NoMatch stack back on the 
-            // '' _Targets stack, these will be at the bottom making them less important. The move all the
-            // '' targets from the _Match stack on the _Targets stack, these will be on the top and will there
-            // '' for be shot at first
-            // '' </summary>
-            // '' <param name="row">the row of the optimisation</param>
-            // '' <param name="column">the column of the optimisation</param>
-            MoveToTopOfStack(((int)(row)), ((int)(column)));
-            Stack<Target> _NoMatch = new Stack<Target>();
-            Stack<Target> _Match = new Stack<Target>();
-            Target current;
-            while ((_Targets.Count > 0))
-            {
-                current = _Targets.Pop();
-                if (((current.ShotAt.Row == row)
-                            || (current.ShotAt.Column == column)))
-                {
-                    _Match.Push(current);
-                }
-                else
-                {
-                    _NoMatch.Push(current);
-                }
+    }
 
+    // '' <summary>
+    // '' ReOrderTargets will optimise the targeting by re-orderin the stack that the targets are in.
+    // '' By putting the most important targets at the top they are the ones that will be shot at first.
+    // '' </summary>
+    private void ReOrderTargets()
+    {
+        // if the ship is lying on the same row, call MoveToTopOfStack to optimise on the row
+        if (_CurrentTarget.SameRow)
+        {
+            MoveToTopOfStack(_CurrentTarget.ShotAt.Row, -1);
+        }
+        else if (_CurrentTarget.SameColumn)
+        {
+            // else if the ship is lying on the same column, call MoveToTopOfStack to optimise on the column
+            MoveToTopOfStack(-1, _CurrentTarget.ShotAt.Column);
+        }
+    }
+
+
+    // '' <summary>
+    // '' MoveToTopOfStack will re-order the stack by checkin the coordinates of each target
+    // '' If they have the right column or row values it will be moved to the _Match stack else 
+    // '' put it on the _NoMatch stack. Then move all the targets from the _NoMatch stack back on the 
+    // '' _Targets stack, these will be at the bottom making them less important. The move all the
+    // '' targets from the _Match stack on the _Targets stack, these will be on the top and will there
+    // '' for be shot at first
+    // '' </summary>
+    // '' <param name="row">the row of the optimisation</param>
+    // '' <param name="column">the column of the optimisation</param>
+    private void MoveToTopOfStack(int row, int col)
+    {
+        Stack<Target> _NoMatch = new Stack<Target>();
+        Stack<Target> _Match = new Stack<Target>();
+        Target current;
+        while ((_Targets.Count > 0))
+        {
+            current = _Targets.Pop();
+            if (((current.ShotAt.Row == row)
+                        || (current.ShotAt.Column == col)))
+            {
+                _Match.Push(current);
             }
-
-            foreach (Target targ in _NoMatch)
+            else
             {
-                _Targets.Push(targ);
-            }
-
-            foreach (Target aTarget in _Match)
-            {
-                _Targets.Push(aTarget);
-            }
-
-            // '' <summary>
-            // '' AddTarget will add the targets it will shoot onto a stack
-            // '' </summary>
-            // '' <param name="row">the row of the targets location</param>
-            // '' <param name="column">the column of the targets location</param>
-            AddTarget(((int)(row)), ((int)(column)));
-            if (((row >= 0)
-                        && ((column >= 0)
-                        && ((row < EnemyGrid.Height)
-                        && ((column < EnemyGrid.Width)
-                        && (EnemyGrid.Item[row, column] == TileView.Sea))))))
-            {
-                _Targets.Push(new Target(new Location(row, column), _CurrentTarget.ShotAt));
+                _NoMatch.Push(current);
             }
 
         }
 
+        foreach (Target targ in _NoMatch)
+        {
+            _Targets.Push(targ);
+        }
+
+        foreach (Target aTarget in _Match)
+        {
+            _Targets.Push(aTarget);
+        }
+    }
+
+
+    // '' <summary>
+    // '' AddTarget will add the targets it will shoot onto a stack
+    // '' </summary>
+    // '' <param name="row">the row of the targets location</param>
+    // '' <param name="column">the column of the targets location</param>
+    private void AddTarget(int row, int column)
+    {
+        if ((row >= 0) && (column >= 0) && (row < EnemyGrid.Height)
+                       && (column < EnemyGrid.Width) && (EnemyGrid.Item[row, column] == TileView.Sea))
+        {
+            _Targets.Push(new Target(new Location(row, column), _CurrentTarget.ShotAt));
+        }
+
     }
 }
+
