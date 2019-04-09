@@ -49,6 +49,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="src\GameMain.cs" />
+    <Compile Include="src\GameResources.cs" />
+    <Compile Include="src\AIHardPlayer.cs" />
+    <Compile Include="src\AIMediumPlayer.cs" />
+    <Compile Include="src\AIOption.cs" />
+    <Compile Include="src\AIPlayer.cs" />
+    <Compile Include="src\AttackResult.cs" />
+    <Compile Include="src\GameState.cs" />
+    <Compile Include="src\HighScoreController.cs" />
+    <Compile Include="src\MenuController.cs" />
+    <Compile Include="src\UtilityFunctions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="SwinGame">
