@@ -1,3 +1,8 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using SwinGameSDK;
 /*  <summary>
 The values that are visable for a given tile.
 </summary>

@@ -1,3 +1,8 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using SwinGameSDK;
 /*
 <summary>
 The SeaGridAdapter allows for the change in a sea grid view. Whenever a ship is

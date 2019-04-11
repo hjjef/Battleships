@@ -1,3 +1,8 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using SwinGameSDK;
 /*
 <summary>
 A Ship has all the details about itself. For example the shipname,
