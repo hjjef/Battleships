@@ -287,7 +287,10 @@ class UtilityFunctions {
     }
     
     private List<Sprite> _Animations = new List<Sprite>();
-    
+
+    // '' <summary>
+    // '' Adds an animation, given the image, at a game coordinate
+    // '' </summary>
     private static void AddAnimation(int row, int col, string image) {
         Sprite s;
         Bitmap imgObj;
