@@ -49,7 +49,6 @@
     <Folder Include="src\Model\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="src\GameMain.cs" />
     <Compile Include="src\GameResources.cs" />
     <Compile Include="src\GameState.cs" />
     <Compile Include="src\HighScoreController.cs" />

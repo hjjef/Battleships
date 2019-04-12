@@ -1,3 +1,11 @@
+/*
+<summary>
+Gamelogic opens game window
+Starts game and calls to handle user input and draw the screen
+Frees resources when the window is closed
+</summary>
+*/
+
 class GameLogic {
     
     public static void Main() {
