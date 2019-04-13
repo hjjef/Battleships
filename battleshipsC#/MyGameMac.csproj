@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <ProjectTypeGuids>{948B3504-5B70-4649-8FE4-BDE1FB46EC69};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -49,31 +48,33 @@
     <Folder Include="src\Model\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="src\GameResources.cs" />
-    <Compile Include="src\GameState.cs" />
-    <Compile Include="src\HighScoreController.cs" />
-    <Compile Include="src\MenuController.cs" />
     <Compile Include="src\UtilityFunctions.cs" />
-    <Compile Include="src\DeploymentController.cs" />
-    <Compile Include="src\DiscoveryController.cs" />
-    <Compile Include="src\EndingGameController.cs" />
-    <Compile Include="src\GameController.cs" />
+    <Compile Include="src\MenuController.cs" />
+    <Compile Include="src\HighScoreController.cs" />
+    <Compile Include="src\GameState.cs" />
+    <Compile Include="src\GameResources.cs" />
+    <Compile Include="src\GameMain.cs" />
     <Compile Include="src\GameLogic.cs" />
-    <Compile Include="src\Model\SeaGrid.cs" />
-    <Compile Include="src\Model\SeaGridAdapter.cs" />
-    <Compile Include="src\Model\Ship.cs" />
-    <Compile Include="src\Model\Tile.cs" />
+    <Compile Include="src\GameController.cs" />
+    <Compile Include="src\EndingGameController.cs" />
+    <Compile Include="src\DiscoveryController.cs" />
+    <Compile Include="src\DeploymentController.cs" />
     <Compile Include="src\Model\TileView.cs" />
-    <Compile Include="src\Model\AIHardPlayer.cs" />
-    <Compile Include="src\Model\AIMediumPlayer.cs" />
-    <Compile Include="src\Model\AIOption.cs" />
-    <Compile Include="src\Model\AIPlayer.cs" />
-    <Compile Include="src\Model\AttackResult.cs" />
-    <Compile Include="src\Model\BattleShipsGame.cs" />
-    <Compile Include="src\Model\Direction.cs" />
-    <Compile Include="src\Model\ISeaGrid.cs" />
-    <Compile Include="src\Model\Player.cs" />
+    <Compile Include="src\Model\Tile.cs" />
+    <Compile Include="src\Model\ShipName.cs" />
+    <Compile Include="src\Model\Ship.cs" />
+    <Compile Include="src\Model\SeaGridAdapter.cs" />
+    <Compile Include="src\Model\SeaGrid.cs" />
     <Compile Include="src\Model\ResultOfAttack.cs" />
+    <Compile Include="src\Model\Player.cs" />
+    <Compile Include="src\Model\ISeaGrid.cs" />
+    <Compile Include="src\Model\Direction.cs" />
+    <Compile Include="src\Model\BattleShipsGame.cs" />
+    <Compile Include="src\Model\AttackResult.cs" />
+    <Compile Include="src\Model\AIPlayer.cs" />
+    <Compile Include="src\Model\AIOption.cs" />
+    <Compile Include="src\Model\AIMediumPlayer.cs" />
+    <Compile Include="src\Model\AIHardPlayer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="SwinGame">
