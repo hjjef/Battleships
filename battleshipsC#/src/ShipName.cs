@@ -6,25 +6,19 @@ using System.Collections.Generic;
 //using System.Data;
 using System.Diagnostics;
 /// <summary>
-/// The different AI levels.
+/// The names of all of the ships in the gam
 /// </summary>
-public enum AIOption
+/// <remarks></remarks>
+public enum ShipName
 {
-	/// <summary>
-	/// Easy, total random shooting
-	/// </summary>
-	Easy,
-
-	/// <summary>
-	/// Medium, marks squares around hits
-	/// </summary>
-	Medium,
-
-	/// <summary>
-	/// As medium, but removes shots once it misses
-	/// </summary>
-	Hard
+	None = 0,
+	Tug = 1,
+	Submarine = 2,
+	Destroyer = 3,
+	Battleship = 4,
+	AircraftCarrier = 5
 }
+
 
 //=======================================================
 //Service provided by Telerik (www.telerik.com)
