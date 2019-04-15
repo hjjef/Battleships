@@ -163,7 +163,7 @@ static class HighScoreController
 	/// <remarks>
 	/// This verifies if the score is a highsSwinGame.
 	/// </remarks>
-	public static void ReadHighScore(int value)
+	public static void ReadHighScore(int value) 
 	{
 		const int ENTRY_TOP = 500;
 

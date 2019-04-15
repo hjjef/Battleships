@@ -53,7 +53,6 @@
     <Compile Include="src\HighScoreController.cs" />
     <Compile Include="src\GameState.cs" />
     <Compile Include="src\GameResources.cs" />
-    <Compile Include="src\GameMain.cs" />
     <Compile Include="src\GameLogic.cs" />
     <Compile Include="src\GameController.cs" />
     <Compile Include="src\EndingGameController.cs" />
@@ -96,5 +95,40 @@
       <IsCxx>False</IsCxx>
       <Kind>Dynamic</Kind>
     </NativeReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\sounds\winner.wav" />
+    <BundleResource Include="Resources\sounds\watershot.wav" />
+    <BundleResource Include="Resources\sounds\sink.wav" />
+    <BundleResource Include="Resources\sounds\lose.wav" />
+    <BundleResource Include="Resources\sounds\horrordrone.mp3" />
+    <BundleResource Include="Resources\sounds\SwinGameStart.ogg" />
+    <BundleResource Include="Resources\images\deploy_button_hl.png" />
+    <BundleResource Include="Resources\images\deploy_dir_button_horiz.png" />
+    <BundleResource Include="Resources\images\deploy_dir_button_vert.png" />
+    <BundleResource Include="Resources\images\deploy_play_button.png" />
+    <BundleResource Include="Resources\images\deploy_randomize_button.png" />
+    <BundleResource Include="Resources\images\deploy.jpg" />
+    <BundleResource Include="Resources\images\discover.jpg" />
+    <BundleResource Include="Resources\images\explosion.png" />
+    <BundleResource Include="Resources\images\loader_empty.png" />
+    <BundleResource Include="Resources\images\loader_full.png" />
+    <BundleResource Include="Resources\images\main_page.jpg" />
+    <BundleResource Include="Resources\images\ship_deploy_horiz_1.png" />
+    <BundleResource Include="Resources\images\ship_deploy_horiz_2.png" />
+    <BundleResource Include="Resources\images\ship_deploy_horiz_3.png" />
+    <BundleResource Include="Resources\images\ship_deploy_horiz_4.png" />
+    <BundleResource Include="Resources\images\ship_deploy_horiz_5.png" />
+    <BundleResource Include="Resources\images\ship_deploy_vert_1.png" />
+    <BundleResource Include="Resources\images\ship_deploy_vert_2.png" />
+    <BundleResource Include="Resources\images\ship_deploy_vert_3.png" />
+    <BundleResource Include="Resources\images\ship_deploy_vert_4.png" />
+    <BundleResource Include="Resources\images\ship_deploy_vert_5.png" />
+    <BundleResource Include="Resources\images\splash.png" />
+    <BundleResource Include="Resources\images\SplashBack.png" />
+    <BundleResource Include="Resources\images\SwinGameAni.jpg" />
+    <BundleResource Include="Resources\fonts\ffaccess.ttf" />
+    <BundleResource Include="Resources\animations\splash.txt" />
+    <BundleResource Include="Resources\sounds\hit.wav" />
   </ItemGroup>
 </Project>
