@@ -42,15 +42,27 @@ static class UtilityFunctions
 	public const int ANIMATION_CELLS = 7;
 
 	public const int FRAMES_PER_CELL = 8;
-	/// <summary>
-	/// Determines if the mouse is in a given rectangle.
-	/// </summary>
-	/// <param name="x">the x location to check</param>
-	/// <param name="y">the y location to check</param>
-	/// <param name="w">the width to check</param>
-	/// <param name="h">the height to check</param>
-	/// <returns>true if the mouse is in the area checked</returns>
-	public static bool IsMouseInRectangle(int x, int y, int w, int h)
+
+    //Background Randomization Change: Function to generate random int for index
+    public static int RandomBackground()
+    {
+        Random bckgrdIndex = new Random();
+        int bkindex = bckgrdIndex.Next(0, 5);
+        //Console.WriteLine(bkindex); //Used for testing
+        return bkindex;
+    }
+    //Background Randomization Change: index for background randomisation
+    private static int bckGrndIndx = RandomBackground();
+
+    /// <summary>
+    /// Determines if the mouse is in a given rectangle.
+    /// </summary>
+    /// <param name="x">the x location to check</param>
+    /// <param name="y">the y location to check</param>
+    /// <param name="w">the width to check</param>
+    /// <param name="h">the height to check</param>
+    /// <returns>true if the mouse is in the area checked</returns>
+    public static bool IsMouseInRectangle(int x, int y, int w, int h)
 	{
 		Point2D mouse = default(Point2D);
 		bool result = false;
@@ -223,14 +235,17 @@ static class UtilityFunctions
 		SwinGame.DrawText(Message, MESSAGE_COLOR, GameResources.GameFont("Courier"), FIELD_LEFT, MESSAGE_TOP);
 	}
 
-	/// <summary>
-	/// Draws the background for the current state of the game
-	/// </summary>
+    /// <summary>
+    /// Draws the background for the current state of the game
+    /// </summary>
     /// <remarks>
     /// Isuru: Updated Draw frame rate function;
     /// </remarks>
+    /// 
 
-	public static void DrawBackground()
+
+
+    public static void DrawBackground()
 	{
 		switch (GameController.CurrentState) {
 			case GameState.ViewingMainMenu:
@@ -241,7 +256,7 @@ static class UtilityFunctions
 				break;
 			case GameState.Discovering:
 			case GameState.EndingGame:
-				SwinGame.DrawBitmap(GameResources.GameImage("Discovery"), 0, 0);
+				SwinGame.DrawBitmap(GameResources.BkImage(bckGrndIndx), 0, 0);//Background Randomization Change
 				break;
 			case GameState.Deploying:
 				SwinGame.DrawBitmap(GameResources.GameImage("Deploy"), 0, 0);

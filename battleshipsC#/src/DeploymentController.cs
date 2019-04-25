@@ -156,13 +156,14 @@ static class DeploymentController
 
 		if (GameController.HumanPlayer.ReadyToDeploy) {
 			SwinGame.DrawBitmap(GameResources.GameImage("PlayButton"), PLAY_BUTTON_LEFT, TOP_BUTTONS_TOP);
+            
 			//SwinGame.FillRectangle(Color.LightBlue, PLAY_BUTTON_LEFT, PLAY_BUTTON_TOP, PLAY_BUTTON_WIDTH, PLAY_BUTTON_HEIGHT)
 			//SwinGame.DrawText("PLAY", Color.Black, GameFont("Courier"), PLAY_BUTTON_LEFT + TEXT_OFFSET, PLAY_BUTTON_TOP)
 		}
 
 		SwinGame.DrawBitmap(GameResources.GameImage("RandomButton"), RANDOM_BUTTON_LEFT, TOP_BUTTONS_TOP);
-
-		UtilityFunctions.DrawMessage();
+        UtilityFunctions.RandomBackground();
+        UtilityFunctions.DrawMessage();
 	}
 
 	/// <summary>
