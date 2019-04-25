@@ -120,6 +120,11 @@ public class Player : IEnumerable<Ship>
 		get { return _misses; }
 	}
 
+    /// <summary>
+    /// Total Score
+    /// </summary>
+    /// <value>12 * hits - Shots - 20 * own ships killed</value>
+    /// <returns> the score </returns>
 	public int Score {
 		get {
 			if (IsDestroyed) {
