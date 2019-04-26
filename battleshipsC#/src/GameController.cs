@@ -163,22 +163,22 @@ public static class GameController
 		switch (result.Value) {
 			case ResultOfAttack.Destroyed:
 				PlayHitSequence(result.Row, result.Column, isHuman);
-				Audio.PlaySoundEffect(GameResources.GameSound("Sink"));
+				Audio.PlaySoundEffect(GameResources.GameSound("Siren"));
 
 				break;
 			case ResultOfAttack.GameOver:
 				PlayHitSequence(result.Row, result.Column, isHuman);
-				Audio.PlaySoundEffect(GameResources.GameSound("Sink"));
+				Audio.PlaySoundEffect(GameResources.GameSound("Siren"));
 
-				while (Audio.SoundEffectPlaying(GameResources.GameSound("Sink"))) {
+				while (Audio.SoundEffectPlaying(GameResources.GameSound("Siren"))) {
 					SwinGame.Delay(10);
 					SwinGame.RefreshScreen();
 				}
 
 				if (HumanPlayer.IsDestroyed) {
-					Audio.PlaySoundEffect(GameResources.GameSound("Lose"));
+					Audio.PlaySoundEffect(GameResources.GameSound("Siren"));
 				} else {
-					Audio.PlaySoundEffect(GameResources.GameSound("Winner"));
+					Audio.PlaySoundEffect(GameResources.GameSound("Siren"));
 				}
 
 				break;
