@@ -50,7 +50,7 @@ public static class GameResources
 		NewSound("Error", "error.wav");
 		NewSound("Hit", "hit.wav");
 		NewSound("Sink", "sink.wav");
-		//NewSound("Siren", "siren.wav");
+		NewSound("Siren", "siren.wav");
 		NewSound("Miss", "watershot.wav");
 		NewSound("Winner", "winner.wav");
 		NewSound("Lose", "lose.wav");
@@ -58,7 +58,8 @@ public static class GameResources
 
 	private static void LoadMusic()
 	{
-		NewMusic("Background", "horrordrone.mp3");
+		//NewMusic("Background", "horrordrone.mp3");
+        NewMusic("Shaggy", "shaggy.mp3");
 	}
 
 	/// <summary>
