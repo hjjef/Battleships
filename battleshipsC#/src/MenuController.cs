@@ -1,4 +1,3 @@
-
 using Microsoft.VisualBasic;
 using System;
 using System.Collections;
@@ -154,7 +153,7 @@ static class MenuController
 	public static void DrawGameMenu()
 	{
 		//Clears the Screen to Black
-		//SwinGame.DrawText("Paused", Color.White, GameFont("ArialLarge"), 50, 50)
+		SwinGame.DrawText("SURRENDER", Color.White, GameFont("ArialLarge"), 13, 13)
 
 		DrawButtons(GAME_MENU);
 	}
