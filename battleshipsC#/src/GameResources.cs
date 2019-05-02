@@ -316,8 +316,7 @@ public static class GameResources
 
 	private static void FreeSounds()
 	{
-        // Isuru: Memory Access Violation here
-        //return;
+
 		foreach (SoundEffect obj in _Sounds.Values) {
 			Audio.FreeSoundEffect(obj);
 		}
