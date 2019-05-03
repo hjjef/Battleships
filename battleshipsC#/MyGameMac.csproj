@@ -130,5 +130,6 @@
     <BundleResource Include="Resources\fonts\ffaccess.ttf" />
     <BundleResource Include="Resources\animations\splash.txt" />
     <BundleResource Include="Resources\sounds\hit.wav" />
+    <BundleResource Include="Resources\sounds\siren.wav" />
   </ItemGroup>
 </Project>
