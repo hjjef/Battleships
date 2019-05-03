@@ -74,6 +74,7 @@
     <Compile Include="src\Model\AIOption.cs" />
     <Compile Include="src\Model\AIMediumPlayer.cs" />
     <Compile Include="src\Model\AIHardPlayer.cs" />
+    <Compile Include="src\Model\AIEasyPlayer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="SwinGame">
