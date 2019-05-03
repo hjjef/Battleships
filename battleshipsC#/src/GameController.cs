@@ -33,6 +33,15 @@ public static class GameController
 		get { return _state.Peek(); }
 	}
 
+    /// <summary>
+    /// Returns the current difficulty setting of the game
+    /// </summary>
+    /// <value> The current difficulty setting</value>
+    /// <returns> The current difficulty setting</returns>
+    public static AIOption Difficulty{
+        get { return _aiSetting; }
+    }
+
 	/// <summary>
 	/// Returns the human player.
 	/// </summary>

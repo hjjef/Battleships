@@ -144,7 +144,7 @@ static class MenuController
 	{
 		//Clears the Screen to Black
 		//SwinGame.DrawText("Main Menu", Color.White, GameFont("ArialLarge"), 50, 50)
-
+        DrawDifficulty ();
 		DrawButtons(MAIN_MENU);
 	}
 
@@ -153,11 +153,18 @@ static class MenuController
 	/// </summary>
 	public static void DrawGameMenu()
 	{
-		//Clears the Screen to Black
-		//SwinGame.DrawText("Paused", Color.White, GameFont("ArialLarge"), 50, 50)
-
+        //Clears the Screen to Black
+        //SwinGame.DrawText("Paused", Color.White, GameFont("ArialLarge"), 50, 50)
 		DrawButtons(GAME_MENU);
 	}
+
+    /// <summary>
+    /// Draws the difficulty to the screen.
+    /// </summary>
+    public static void DrawDifficulty()
+    {
+        SwinGame.DrawText ("Difficulty: " + GameController.Difficulty.ToString (), Color.White, GameResources.GameFont ("Menu"), MENU_LEFT, MENU_TOP - 50);
+    }
 
 	/// <summary>
 	/// Draws the settings menu to the screen.
@@ -169,9 +176,9 @@ static class MenuController
 	{
 		//Clears the Screen to Black
 		//SwinGame.DrawText("Settings", Color.White, GameFont("ArialLarge"), 50, 50)
-
 		DrawButtons(MAIN_MENU);
 		DrawButtons(SETUP_MENU, 1, 1);
+        DrawDifficulty ();
 	}
 
 	/// <summary>
