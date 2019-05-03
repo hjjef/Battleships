@@ -33,7 +33,7 @@ static class EndingGameController
 		toDraw.Height = SwinGame.ScreenHeight ();
         String whatShouldIPrint = "I have long variable names";
 		if (GameController.HumanPlayer.IsDestroyed) {
-            whatShouldIPrint = "YOU LOSE!";
+            whatShouldIPrint = "DENNIS!!!";
         } else {
 			whatShouldIPrint = "-- WINNER --";
 		}
