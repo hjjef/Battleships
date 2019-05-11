@@ -22,8 +22,15 @@ public static class GameResources
 	{
 		//Backgrounds
 		NewImage("Menu", "main_page.jpg");
-		NewImage("Discovery", "discover.jpg");
-		NewImage("Deploy", "deploy.jpg");
+        NewImage("Deploy", "deploy.jpg");
+        //Background Randomization Change: New Images
+        BackImage("discover.jpg");
+        BackImage("discoverGreen.jpg");
+        BackImage("discoverRed.jpg");
+        BackImage("discoverPurple.jpg");
+        BackImage("discoverPink"); 
+        BackImage("discoverOrange");
+        
 
 		//Deployment
 		NewImage("LeftRightButton", "deploy_dir_button_horiz.png");
@@ -84,6 +91,13 @@ public static class GameResources
 		return _Images[image];
 	}
 
+    //Background Randomization Change: Returns image from  _BackGrndImg List 
+    public static Bitmap BkImage(int index)
+    {
+        return _BackGrndImg[index];
+    }
+
+
 	/// <summary>
 	/// Gets an sound loaded in the Resources
 	/// </summary>
@@ -107,6 +121,7 @@ public static class GameResources
 	}
 
 	private static Dictionary<string, Bitmap> _Images = new Dictionary<string, Bitmap>();
+    private static List<Bitmap> _BackGrndImg = new List<Bitmap>(); //Background Randomization Change: List for Discovery Images
 	private static Dictionary<string, Font> _Fonts = new Dictionary<string, Font>();
 	private static Dictionary<string, SoundEffect> _Sounds = new Dictionary<string, SoundEffect>();
 
@@ -275,6 +290,11 @@ public static class GameResources
 		_Images.Add(imageName, SwinGame.LoadBitmap(filename));
 	}
 
+    //Background Randomization Change: Adds images to _BackGrndImg List
+    private static void BackImage(string filename)
+    {
+        _BackGrndImg.Add(SwinGame.LoadBitmap(filename));
+    }
     ///<remarks>
     /// Isuru: Updated call
     /// </remarks>
@@ -312,7 +332,8 @@ public static class GameResources
 		foreach (Bitmap obj in _Images.Values) {
 			SwinGame.FreeBitmap(obj);
 		}
-	}
+      
+    }
 
 	private static void FreeSounds()
 	{
